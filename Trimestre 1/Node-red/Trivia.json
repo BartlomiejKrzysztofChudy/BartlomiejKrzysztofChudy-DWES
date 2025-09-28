@@ -1,0 +1,163 @@
+[
+    {
+        "id": "2ef441b139ab498c",
+        "type": "tab",
+        "label": "Trivia",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "09d3c87c3629949e",
+        "type": "inject",
+        "z": "2ef441b139ab498c",
+        "name": "Paris",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "paris",
+        "payloadType": "str",
+        "x": 130,
+        "y": 80,
+        "wires": [
+            [
+                "e739f1350ce9115d"
+            ]
+        ]
+    },
+    {
+        "id": "033e69f8d3c622c4",
+        "type": "http in",
+        "z": "2ef441b139ab498c",
+        "name": "Respuesta",
+        "url": "/respuesta/:respuesta",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 360,
+        "y": 220,
+        "wires": [
+            [
+                "e739f1350ce9115d"
+            ]
+        ]
+    },
+    {
+        "id": "e739f1350ce9115d",
+        "type": "function",
+        "z": "2ef441b139ab498c",
+        "name": "function 1",
+        "func": "\nconst capitales = {\n    francia: \"paris\",\n    españa: \"madrid\",\n    alemania: \"berlin\",\n    italia: \"roma\"\n};\n\n\nconst paisPregunta = \"francia\";\n\n\nlet respuestaUsuario = (msg.req?.params?.respuesta || msg.payload || \"\")\n                        .toString()\n                        .toLowerCase();\n\n\nlet correcta = capitales[paisPregunta].toLowerCase();\n\n\nmsg.payload = {\n    pais: paisPregunta,\n    respuestaUsuario: respuestaUsuario,\n    correcta: correcta,\n    acierto: respuestaUsuario === correcta\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 100,
+        "wires": [
+            [
+                "934139d98525df5e",
+                "a2225c844d206b77"
+            ]
+        ]
+    },
+    {
+        "id": "934139d98525df5e",
+        "type": "http response",
+        "z": "2ef441b139ab498c",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "826adadecf3f0a34",
+        "type": "inject",
+        "z": "2ef441b139ab498c",
+        "name": "Lyon",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "lyon",
+        "payloadType": "str",
+        "x": 130,
+        "y": 140,
+        "wires": [
+            [
+                "e739f1350ce9115d"
+            ]
+        ]
+    },
+    {
+        "id": "6aaefd1841a0b9ba",
+        "type": "inject",
+        "z": "2ef441b139ab498c",
+        "name": "Madrid",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "madrid",
+        "payloadType": "str",
+        "x": 130,
+        "y": 200,
+        "wires": [
+            [
+                "e739f1350ce9115d"
+            ]
+        ]
+    },
+    {
+        "id": "a2225c844d206b77",
+        "type": "debug",
+        "z": "2ef441b139ab498c",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 200,
+        "wires": []
+    }
+]

@@ -1,0 +1,145 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Piedra, Papel, Tijera",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "2775d6694f2c5807",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Logica",
+        "func": "let opciones = [\"piedra\",\"papel\",\"tijeras\"];\nlet eleccionUsuario = (msg.req.params.eleccion || \"\").toString().toLowerCase();\nlet eleccionMaquina = opciones[Math.floor(Math.random()*3)];\n\nlet resultado;\nif (eleccionUsuario === eleccionMaquina) {\n    resultado = \"Empate\";\n} else if (\n    (eleccionUsuario === \"piedra\" && eleccionMaquina === \"tijera\") ||\n    (eleccionUsuario === \"papel\" && eleccionMaquina === \"piedra\") ||\n    (eleccionUsuario === \"tijera\" && eleccionMaquina === \"papel\")\n) {\n    resultado = \"Ganaste\";\n} else {\n    resultado = \"Perdiste\";\n}\n\nmsg.payload = {\n    usuario: eleccionUsuario,\n    maquina: eleccionMaquina,\n    resultado: resultado\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 200,
+        "wires": [
+            [
+                "5574ba1902e76321"
+            ]
+        ]
+    },
+    {
+        "id": "303eb9be36fbf6bd",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "Piedra",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "piedra",
+        "payloadType": "str",
+        "x": 130,
+        "y": 160,
+        "wires": [
+            [
+                "2775d6694f2c5807"
+            ]
+        ]
+    },
+    {
+        "id": "8af0be284cd43f39",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "Papel",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "papel",
+        "payloadType": "str",
+        "x": 130,
+        "y": 220,
+        "wires": [
+            [
+                "2775d6694f2c5807"
+            ]
+        ]
+    },
+    {
+        "id": "af62697c7f738c87",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "Tijera",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "tijera",
+        "payloadType": "str",
+        "x": 130,
+        "y": 280,
+        "wires": [
+            [
+                "2775d6694f2c5807"
+            ]
+        ]
+    },
+    {
+        "id": "b228fe710a644222",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/:eleccion",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 290,
+        "y": 320,
+        "wires": [
+            [
+                "2775d6694f2c5807"
+            ]
+        ]
+    },
+    {
+        "id": "5574ba1902e76321",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 590,
+        "y": 200,
+        "wires": []
+    }
+]
