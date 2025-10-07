@@ -1,19 +1,17 @@
-function sevenBoom(numero){
+function sevenBoom(myArray = []){
+    for(let n of myArray){
+        if(String(n).includes('7')){
 
-    const cadenaNumero = String(numero);
-
-
-    if(numero % 7 == 0 || cadenaNumero.includes("7")){
-        console.log(`BOOM Numero: ${numero}`);
-    }else{
-        console.log(`Numero: ${numero} incorrecto`);
+            return 'BOOM'
+        }
     }
 
+    return "there is no 7 in the array"
 
 }
 
-sevenBoom(91);
-sevenBoom(10);
+console.log(sevenBoom([1, 2, 3, 4, 5, 6, 7]))
+
 
 
 
