@@ -1,25 +1,20 @@
+let url  = "https://www.google.com/search/test.js?ok=1"
 function descomponerURL(url) {
-    const urlRegex  = "";
-    const match = url.match(urlRegex);
 
-    const protocol = match[1];
-    const subDomain = match[2] || '';
-    const domainName = match[3];
-    const targetFile = match[4] || '';
-    const argumentsFile = match[5] || '';
+    const u = new URL(url);
 
-  
-    return {
-        protocol,
-        ipAdress,
-        subDomain,
-        domainName,
-        folderTree,
-        targetFile,
-        argumentsFile
+    return{
+        protocol: u.protocol.replace(":", ""),
+        ipAdres: null,
+        subDomain: u.hostname.split(".")[0],
+        domainName: u.hostname.split(".").slice(1).join("."),
+        folderTree: u.pathname.split("/").filter(x=> x && !x.includes("")),
+        targetFile: u.pathname.split("/").pop().includes(".") ? u.pathname.split("/").pop() : null,
+        urgumentsFile: u.search
     };
+
 }
 
 
-const url = '';
-console.log(descomponerURL(url));
+console.log(descomponerURL(url))
+
