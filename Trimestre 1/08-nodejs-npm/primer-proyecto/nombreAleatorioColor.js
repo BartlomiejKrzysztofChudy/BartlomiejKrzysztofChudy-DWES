@@ -12,5 +12,6 @@ function nombreAleatorio() {
     console.log('Nombre:', color(nombre));
 }
 
+console.log();
 nombreAleatorio();
 
