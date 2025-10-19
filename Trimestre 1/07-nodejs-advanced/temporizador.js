@@ -1,6 +1,6 @@
 async function esperar(ms) {
     
-    return new Promise((resolve, reject)=>{
+    return new Promise((resolve)=>{
         
         setTimeout(() =>{
             resolve(`Han pasado ${ms} milisegundos`);
