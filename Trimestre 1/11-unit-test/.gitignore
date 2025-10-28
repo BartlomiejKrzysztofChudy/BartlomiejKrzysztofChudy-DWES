@@ -1,0 +1,9 @@
+/node_modules
+/visitest.config.js
+/package.json
+/package-lock.json
+/coverage
+/.scannerwork
+/.sonarlint
+/.vscode
+/sonar-project.properties
