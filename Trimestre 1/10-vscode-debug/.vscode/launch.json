@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Ejecutar index.js",
+      "program": "${workspaceFolder}/index.js",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Ejecutar archivo actual",
+      "program": "${file}"
+    }
+  ]
+}
+
+
