@@ -3,5 +3,4 @@ coverage/
 .scannerwork/
 docker-compose.yml
 package-lock.json
-package.json
 sonar-project.properties

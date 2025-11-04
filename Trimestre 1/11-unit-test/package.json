@@ -1,0 +1,20 @@
+{
+  "name": "11-unit-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+ "scripts": {
+  "test": "vitest run",
+  "test:watch": "vitest",
+  "test:coverage": "vitest run --coverage",
+  "test:report": "npx sonarqube-scanner"
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@vitest/coverage-v8": "^4.0.6",
+    "vitest": "^4.0.6"
+  }
+}
