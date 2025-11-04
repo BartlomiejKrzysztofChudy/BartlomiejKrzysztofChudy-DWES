@@ -1,9 +1,7 @@
-/node_modules
-/visitest.config.js
-/package.json
-/package-lock.json
-/coverage
-/.scannerwork
-/.sonarlint
-/.vscode
-/sonar-project.properties
+node_modules/
+coverage/
+.scannerwork/
+docker-compose.yml
+package-lock.json
+package.json
+sonar-project.properties
