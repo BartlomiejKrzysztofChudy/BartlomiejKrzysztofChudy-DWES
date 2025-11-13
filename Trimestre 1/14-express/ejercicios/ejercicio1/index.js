@@ -7,10 +7,6 @@ app.get('/', (req, res) => {
   res.send('Hola Mundo ');
 });
 
-app.listen(port, () => {
-  console.log(`Servidor en http://localhost:${port}`);
-});
-
 app.post('/', (req, res) => {
   res.send('Recibida una solicitud POST');
 });
