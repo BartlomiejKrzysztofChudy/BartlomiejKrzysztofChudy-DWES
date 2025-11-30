@@ -1,0 +1,23 @@
+{
+  "name": "gestor-notas",
+  "version": "1.0.0",
+  "description": "CLI para gestionar notas",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-ava": "^14.0.0",
+    "eslint-plugin-import": "^2.32.0",
+    "nodemon": "^3.1.7"
+  }
+}

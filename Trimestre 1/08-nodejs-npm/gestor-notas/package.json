@@ -1,0 +1,13 @@
+{
+  "name": "primer-proyecto",
+  "version": "1.0.0",
+  "description": "Editor de notas de consola (Tema 6 adaptado a NPM)",
+  "main": "editorNotas.js",
+  "scripts": {
+    "start": "node editorNotas.js"
+  },
+  "keywords": [],
+  "author": "Bartolome",
+  "license": "ISC",
+  "type": "module"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "gestor-notas",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "CLI para gestionar notas desde la terminal",
+  "scripts": {
+    "notas": "node index.js",
+    "notas:crear": "node index.js crear",
+    "notas:editar": "node index.js editar",
+    "notas:eliminar": "node index.js eliminar",
+    "notas:salir": "node index.js salir"
+  }
+}

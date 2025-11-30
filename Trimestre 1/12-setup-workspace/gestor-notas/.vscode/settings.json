@@ -1,0 +1,18 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.rulers": [
+    100
+  ],
+  "files.eol": "\n",
+  "eslint.validate": [
+    "javascript"
+  ],
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto"
+    }
+  ],
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+}

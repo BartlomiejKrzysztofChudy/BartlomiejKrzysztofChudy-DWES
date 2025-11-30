@@ -1,3 +1,5 @@
 /node_modules
 /package-lock.json
 /package.json
+gestor-notas/node_modules/
+gestor-notas/package-lock.json
