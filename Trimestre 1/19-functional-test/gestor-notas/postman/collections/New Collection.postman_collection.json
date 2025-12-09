@@ -1,0 +1,45 @@
+{
+  "info": {
+    "_postman_id": "82296276-bfb1-47a8-9775-c52c1be5e5a5",
+    "name": "20-api-security",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "New Request",
+      "id": "3f62bf26-cb4a-4b6a-b81f-dca7871fd056",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer I know your secret",
+            "type": "text"
+          },
+          {
+            "key": "role",
+            "value": "admin",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "role",
+            "value": "vip",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/vip",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "vip"
+          ]
+        }
+      }
+    }
+  ]
+}

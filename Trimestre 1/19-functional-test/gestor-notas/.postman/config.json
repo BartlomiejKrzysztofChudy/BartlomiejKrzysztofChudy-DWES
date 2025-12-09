@@ -4,7 +4,9 @@
   },
   "entities": {
     "collections": [
-      "..\\postman\\collections\\Gestor-Notas.postman_collection.json"
+      "..\\postman\\collections\\Gestor-Notas.postman_collection.json",
+      "..\\postman\\collections\\My Collection.postman_collection.json",
+      "..\\postman\\collections\\Users Api.postman_collection.json"
     ],
     "environments": [],
     "specs": [],
