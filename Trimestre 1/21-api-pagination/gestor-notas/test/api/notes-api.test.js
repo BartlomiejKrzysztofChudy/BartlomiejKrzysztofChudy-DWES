@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import app from '../../src/server.js';
-import { config } from '../../src/config.js';
+import { config } from '../../config.js';
 
 let tmpDir;
 

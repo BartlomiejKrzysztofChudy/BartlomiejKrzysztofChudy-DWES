@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { config } from '../../config.js';
+import { config } from '../../../config.js';
 
 export default async function authMiddleware(req, res, next) {
     

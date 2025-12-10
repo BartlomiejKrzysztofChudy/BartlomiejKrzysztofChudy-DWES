@@ -4,7 +4,7 @@ import os from 'node:os';
 import path from 'node:path';
 
 import * as NoteModel from '../../src/models/note.js';
-import { config } from '../../src/config.js';
+import { config } from '../../config.js';
 
 let tmpDir;
 
