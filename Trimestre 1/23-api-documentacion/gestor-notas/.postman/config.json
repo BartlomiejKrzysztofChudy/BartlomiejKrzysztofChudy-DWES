@@ -1,0 +1,14 @@
+{
+  "workspace": {
+    "id": "63058b67-57f9-48f4-8933-149b16a6ab03"
+  },
+  "entities": {
+    "collections": [
+      "..\\postman\\collections\\Gestor-Notas.postman_collection.json"
+    ],
+    "environments": [],
+    "specs": [],
+    "flows": [],
+    "globals": []
+  }
+}

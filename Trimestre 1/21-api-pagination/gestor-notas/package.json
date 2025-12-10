@@ -1,0 +1,36 @@
+{
+  "name": "gestor-notas",
+  "version": "1.0.0",
+  "description": "Gestor de notas en consola siguiendo patrón MVC",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "start:server": "node src/server.js",
+    "dev": "node --watch src/index.js",
+    "test": "vitest run",
+    "test:cov": "vitest run --coverage",
+    "test:watch": "vitest --watch"
+  },
+  "keywords": [
+    "notes",
+    "cli",
+    "mvc"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^16.6.1",
+    "express": "^4.18.2",
+    "js-yaml": "^4.1.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "winston": "^3.9.0"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^1.6.1",
+    "supertest": "^6.3.3",
+    "vitest": "^1.0.0"
+  }
+}
