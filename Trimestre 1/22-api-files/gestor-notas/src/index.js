@@ -1,6 +1,6 @@
-import * as input from './src/utils/input.js';
-import { noteController } from './src/controllers/note-controller.js';
-import { logger } from './src/utils/logger.js';
+import * as input from './utils/input.js';
+import { noteController } from './controllers/note-controller.js';
+import { logger } from './utils/logger.js';
 
 const startClock = () => {
   setInterval(() => {

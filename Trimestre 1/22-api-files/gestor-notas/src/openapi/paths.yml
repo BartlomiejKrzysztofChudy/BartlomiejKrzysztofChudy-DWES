@@ -1,0 +1,214 @@
+paths:
+  # --- RUTA: /notes/import (POST) ---
+  /notes/import:
+    post:
+      summary: Importar archivos .note
+      tags: [Notes]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                notes:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+      responses:
+        201:
+          description: Notas importadas exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  imported:
+                    type: array
+                    items:
+                      type: string
+                  errors:
+                    type: array
+                    items:
+                      type: string
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+
+  # --- RUTA: /notes/export (GET) ---
+  /notes/export:
+    get:
+      summary: Exportar notas
+      tags: [Notes]
+      parameters:
+        - in: query
+          name: search
+          schema:
+            type: string
+          description: Filtrar por nombre
+        - in: query
+          name: sort
+          schema:
+            type: string
+            enum: [asc, desc]
+          description: Ordenar resultados
+      responses:
+        200:
+          description: Archivo de nota o ZIP con notas
+          content:
+            text/plain:
+              schema:
+                type: string
+                format: binary
+            application/zip:
+              schema:
+                type: string
+                format: binary
+        404:
+          $ref: '#/components/responses/NotFound'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+
+  # --- RUTA: /notes (GET y POST) ---
+  /notes:
+    get:
+      summary: Listar todas las notas
+      tags: [Notes]
+      responses:
+        200:
+          description: Lista de nombres de archivos de notas
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  notes:
+                    type: array
+                    items:
+                      type: string
+                      example: "lista-compra.note"
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+
+    post:
+      summary: Crear una nueva nota
+      tags: [Notes]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Note' # Usamos tu esquema Note
+      responses:
+        201:
+          description: Nota creada exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Note created"
+                  name:
+                    type: string
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+
+  # --- RUTA: /notes/{name} (GET, PATCH, DELETE) ---
+  /notes/{name}:
+    parameters:
+      - in: path
+        name: name
+        schema:
+          type: string
+        required: true
+        description: Nombre de la nota (sin extensión .note)
+      - in: header
+        name: user
+        schema:
+          type: string
+        required: true
+        description: rol de usuario 
+
+    get:
+      summary: Leer el contenido de una nota
+      tags: [Notes]
+      responses:
+        200:
+          description: Contenido de la nota
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name: 
+                    type: string
+                  content:
+                    type: string
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+
+    patch:
+      summary: Añadir texto al final de una nota
+      tags: [Notes]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - content
+              properties:
+                content:
+                  type: string
+                  description: Texto a añadir
+      responses:
+        200:
+          description: Nota actualizada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Note updated"
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+
+    delete:
+      summary: Eliminar una nota
+      tags: [Notes]
+      responses:
+        200:
+          description: Nota eliminada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Note deleted"
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'

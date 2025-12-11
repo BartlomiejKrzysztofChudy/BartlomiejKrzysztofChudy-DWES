@@ -1,0 +1,16 @@
+components:
+  schemas:
+    Note:
+      type: object
+      required:
+        - name
+        - content
+      properties:
+        name:
+          type: string
+          description: El título de la nota 
+          example: "Titulo de ejemplo" 
+        content:
+          type: string
+          description: El texto dentro de la nota
+          example: "Contenido de la nota"
