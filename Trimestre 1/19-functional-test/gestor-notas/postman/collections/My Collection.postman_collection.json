@@ -3,9 +3,7 @@
     "_postman_id": "d3064d6e-f087-4683-b184-36773d37bd59",
     "name": "My Collection",
     "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "50351223",
-    "_collection_link": "https://bartlomiejkrzysztofchudy-6827706.postman.co/workspace/Bartlomiej-Krzysztof-Chudy's-Wo~63058b67-57f9-48f4-8933-149b16a6ab03/collection/50351223-d3064d6e-f087-4683-b184-36773d37bd59?action=share&source=collection_link&creator=50351223"
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
@@ -75,7 +73,10 @@
       "id": "de21f4bb-d140-4a18-830e-735059d2ec9a",
       "request": {
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": ""
+        }
       },
       "response": []
     },
@@ -84,7 +85,10 @@
       "id": "b4033423-4c69-4c3b-b4b9-4e8ab35735f8",
       "request": {
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": ""
+        }
       },
       "response": []
     },
@@ -93,7 +97,22 @@
       "id": "c060a339-3ff1-454b-a038-cf723d103437",
       "request": {
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "id": "2401801b-f858-4a2e-84c5-6403aedf0f9b",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
       },
       "response": []
     }

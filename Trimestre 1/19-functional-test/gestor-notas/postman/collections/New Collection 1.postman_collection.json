@@ -1,0 +1,62 @@
+{
+  "info": {
+    "_postman_id": "ca9a35b9-c245-48f9-a2dc-59b417be1845",
+    "name": "22-api-files",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "New Request",
+      "id": "30f11b22-3359-471a-9367-ea20ab9ef5e9",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "files",
+              "type": "file",
+              "uuid": "e1116a99-09c0-4103-a4df-c27d917bb289",
+              "src": [
+                "/C:/Users/USUARIO/Pictures/Screenshots/Captura de pantalla 2025-12-07 170018.png"
+              ],
+              "disabled": true
+            },
+            {
+              "key": "files",
+              "type": "file",
+              "uuid": "d0813952-2f6e-4484-8480-fd7acead391e",
+              "src": [
+                "/C:/Users/USUARIO/Desktop/InstruccionesEntrega.md"
+              ],
+              "disabled": true
+            },
+            {
+              "key": "files",
+              "type": "file",
+              "uuid": "f89cfb3a-9377-4e49-b79a-57d0356eee11",
+              "src": [
+                "/C:/Users/USUARIO/Desktop/notaPrueba.note"
+              ],
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3000/download/notaPrueba.note",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "download",
+            "notaPrueba.note"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
