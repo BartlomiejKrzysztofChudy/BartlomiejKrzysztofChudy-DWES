@@ -9,7 +9,7 @@
       "name": "New Request",
       "id": "3f62bf26-cb4a-4b6a-b81f-dca7871fd056",
       "request": {
-        "method": "GET",
+        "method": "DELETE",
         "header": [
           {
             "key": "Authorization",
@@ -25,21 +25,39 @@
           {
             "key": "role",
             "value": "vip",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "user",
+            "value": "admin",
             "type": "text"
           }
         ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"prueba-refactor\",\r\n    \"content\": \"Esto funciona genial\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
         "url": {
-          "raw": "http://localhost:3000/vip",
+          "raw": "http://localhost:3000/api/notes/prueba-refactor",
           "protocol": "http",
           "host": [
             "localhost"
           ],
           "port": "3000",
           "path": [
-            "vip"
+            "api",
+            "notes",
+            "prueba-refactor"
           ]
         }
-      }
+      },
+      "response": []
     }
   ]
 }

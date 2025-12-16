@@ -1,0 +1,59 @@
+openapi: 3.0.3
+info:
+  title: ProyectoNotas API
+  version: 1.0.0
+  description: API para autenticación y gestión de notas.
+components:
+  schemas:
+    LoginRequest:
+      type: object
+      required: [usuario, password]
+      properties:
+        usuario:
+          type: string
+          example: admin
+        password:
+          type: string
+          example: "1234"
+    LoginResponse:
+      type: object
+      properties:
+        mensaje:
+          type: string
+        token:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+    Note:
+      type: object
+      required: [nombre, contenido]
+      properties:
+        nombre:
+          type: string
+          example: "Mi nota"
+        contenido:
+          type: string
+          example: "Contenido de la nota"
+    NoteResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        content:
+          type: string
+    NotesList:
+      type: object
+      properties:
+        total:
+          type: integer
+        totalPaginas:
+          type: integer
+        paginaActual:
+          type: integer
+        datos:
+          type: array
+          items:
+            $ref: '#/components/schemas/NoteResponse'

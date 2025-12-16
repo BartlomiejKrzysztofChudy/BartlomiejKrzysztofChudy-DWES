@@ -1,0 +1,501 @@
+{
+  "info": {
+    "_postman_id": "3266a801-ad17-4558-9922-287ea288a511",
+    "name": "ProyectoNotas API",
+    "description": "Colección completa de tests para la API de Notas",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Autenticación",
+      "item": [
+        {
+          "name": "Login",
+          "id": "1698505e-231b-44cc-813f-966c16a6e9f5",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"usuario\": \"admin\",\n  \"password\": \"1234\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/login",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "1f1790f8-256a-4f01-86a8-afc4c7f25b6f"
+    },
+    {
+      "name": "Notas - CRUD",
+      "item": [
+        {
+          "name": "Listar Notas",
+          "id": "8047eaa0-c888-4641-95a5-5cbad4b947eb",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/notes",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "notes"
+              ],
+              "query": [
+                {
+                  "key": "pagina",
+                  "value": "7",
+                  "description": "Numero de paginas",
+                  "disabled": true
+                },
+                {
+                  "key": "limite",
+                  "value": "1",
+                  "description": "Limite por cada pagina",
+                  "disabled": true
+                },
+                {
+                  "key": "filtro",
+                  "value": "",
+                  "description": "Filtro de nombre",
+                  "disabled": true
+                },
+                {
+                  "key": "orden",
+                  "value": "asc",
+                  "description": "asc o desc",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear Nota",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Crear nota correctamente', function () {",
+                  "    pm.response.to.have.status(201);",
+                  "    pm.response.to.be.json;",
+                  "    pm.response.to.have.jsonBody('message');",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "id": "a65c6946-6c2a-4325-bb30-c24fefa1a785"
+              }
+            }
+          ],
+          "id": "5e019a14-6950-4218-bbf5-d3767cd7c9c3",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Nueva Nota\",\n  \"contenido\": \"Este es el contenido de la nueva nota creada desde Postman\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/notes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "notes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Nota por Nombre",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Obtener nota correctamente', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    pm.response.to.be.json;",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "id": "a5354fd3-b7db-4b55-85bf-668eb0fea6c2"
+              }
+            }
+          ],
+          "id": "d6a6703b-7107-4828-ae9a-05541327606a",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/notes/prueba",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "notes",
+                "prueba"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar Nota",
+          "id": "17a255ed-7ebc-4e61-8c16-3b3fcd168c60",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"prueba3\",\n  \"contenido\": \"Este es el contenido actualizado de la prueba 3\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/notes/",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "notes",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Nota",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Eliminar nota correctamente', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    pm.response.to.be.json;",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "id": "d561cb51-d186-4fd7-96ac-cee72a657676"
+              }
+            }
+          ],
+          "id": "90814bea-8ea1-4315-b08a-e7d67aa4e092",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/notes/Nueva Nota",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "notes",
+                "Nueva Nota"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Descargar Nota",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Descargar nota correctamente', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "id": "04c699a9-d1c0-470d-b891-1b8f954a6c5b"
+              }
+            }
+          ],
+          "id": "d24d60ef-e691-434c-b89a-997996128a03",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/notes/prueba/download",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "notes",
+                "prueba",
+                "download"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "ad4bf81b-d371-4309-b1d9-ea285e01d98b"
+    },
+    {
+      "name": "Importar Notas",
+      "item": [
+        {
+          "name": "Subir Archivos .note",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Subir archivos correctamente', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "id": "c37525a6-06c4-4c87-bd58-bc40a63bcc26"
+              }
+            }
+          ],
+          "id": "defc8cb1-450f-4af7-9931-f4908b6a34b9",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "notas",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/notes/import",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "notes",
+                "import"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "20e765b5-f8a4-4e38-b6f1-3cb8602a9071"
+    },
+    {
+      "name": "Tests - Sin Autenticación",
+      "item": [
+        {
+          "name": "Probar sin Token (403)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Rechaza sin token (403)', function () {",
+                  "    pm.response.to.have.status(403);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "id": "e2c215c0-31fc-498e-a07a-ee925062123e"
+              }
+            }
+          ],
+          "id": "2241f4df-6ce0-4090-8b22-ef396b75f433",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/notes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "notes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Probar con Token Inválido (401)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Rechaza token inválido (401)', function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "id": "faddf1c1-a037-463c-bfd6-dd69ce5c0dec"
+              }
+            }
+          ],
+          "id": "5bbc8420-9306-4d1e-a6c4-486f952879b1",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "token_invalido_xyz_123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/notes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "notes"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "c5f08bde-02bd-4adb-a2e2-aa263b4471c0"
+    }
+  ],
+  "variable": [
+    {
+      "id": "32fee6ad-ebf4-483c-a3f4-c5b8eb6947c4",
+      "key": "token",
+      "value": ""
+    },
+    {
+      "id": "b5711575-b14d-4662-9102-d142d62b83d9",
+      "key": "baseURL",
+      "value": ""
+    }
+  ]
+}
