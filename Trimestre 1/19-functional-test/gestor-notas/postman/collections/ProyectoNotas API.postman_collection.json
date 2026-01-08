@@ -2,7 +2,6 @@
   "info": {
     "_postman_id": "3266a801-ad17-4558-9922-287ea288a511",
     "name": "ProyectoNotas API",
-    "description": "Colección completa de tests para la API de Notas",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -403,7 +402,7 @@
       "name": "Tests - Sin Autenticación",
       "item": [
         {
-          "name": "Probar sin Token (403)",
+          "name": "Probar sin Token 401",
           "event": [
             {
               "listen": "test",
@@ -488,12 +487,12 @@
   ],
   "variable": [
     {
-      "id": "32fee6ad-ebf4-483c-a3f4-c5b8eb6947c4",
+      "id": "d6aebfb7-5c94-4184-bba7-8650940861ad",
       "key": "token",
       "value": ""
     },
     {
-      "id": "b5711575-b14d-4662-9102-d142d62b83d9",
+      "id": "3f8c633d-6a54-4e67-bac2-69d475951117",
       "key": "baseURL",
       "value": ""
     }

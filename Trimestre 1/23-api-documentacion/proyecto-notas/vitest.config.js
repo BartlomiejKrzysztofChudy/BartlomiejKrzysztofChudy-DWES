@@ -5,16 +5,9 @@ export default defineConfig({
         globals: true,
         environment: 'node',
         coverage: {
-            provider: 'v8',
+            provider: 'istanbul',
             reporter: ['text', 'html', 'lcov'],
-            exclude: [
-                'node_modules/',
-                'test/',
-                'notas/',
-                '.eslintrc.json',
-                'vitest.config.js'
-            ],
-            all: true,
+            reportsDirectory: './coverage',
             lines: 80,
             functions: 80,
             branches: 80,

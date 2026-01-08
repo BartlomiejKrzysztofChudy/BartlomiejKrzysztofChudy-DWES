@@ -127,13 +127,6 @@ npm start
 
 El servidor se iniciará en `http://localhost:3000`
 
-### Modo Consola (CLI)
-
-```bash
-npm run console
-```
-
-Permite gestionar notas desde la línea de comandos.
 
 ### Documentación Interactiva
 

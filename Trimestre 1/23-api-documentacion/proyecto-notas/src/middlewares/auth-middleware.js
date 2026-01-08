@@ -5,7 +5,7 @@ export function verificarToken(req, res, next) {
     const cabecera = req.headers.authorization;
 
     if (!cabecera) {
-        return res.status(403).json({
+        return res.status(401).json({
             error: 'Acceso Dengado: Falta el Token'
         });
     }
