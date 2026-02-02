@@ -1,0 +1,25 @@
+# Esquemas de Seguridad para la API
+
+securitySchemes:
+  bearerAuth:
+    type: http
+    scheme: bearer
+    bearerFormat: JWT
+    description: |
+      Token JWT obtenido del endpoint /auth/login.
+      
+      Para usar:
+      1. Llama a POST /auth/login con credenciales válidas
+      2. Copia el token de la respuesta
+      3. Usa el botón "Authorize" en Swagger UI
+      4. Ingresa: Bearer <tu-token>
+      
+      El token incluye:
+      - userId: ID del usuario autenticado
+      - role: Rol del usuario (ADMIN, TEACHER, STUDENT)
+      - iat: Fecha de emisión
+      - exp: Fecha de expiración (24 horas)
+
+# Definir la seguridad global para todos los endpoints protegidos
+security:
+  - bearerAuth: []

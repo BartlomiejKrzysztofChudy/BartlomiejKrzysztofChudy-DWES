@@ -1,25 +1,30 @@
-import jwt from 'jsonwebtoken';
-import { config } from '../config.js';
+import jwt from "jsonwebtoken";
 
-export function verificarToken(req, res, next) {
-    const cabecera = req.headers.authorization;
+const authMiddleware = (req, res, next) => {
+  try {
+    const authHeader = req.headers.authorization;
 
-    if (!cabecera) {
-        return res.status(401).json({
-            error: 'Acceso Dengado: Falta el Token'
-        });
+    if (!authHeader) {
+      return res.status(401).json({ message: "Token requerido" });
     }
 
-    const token = cabecera.startsWith('Bearer ') ? cabecera.slice(7) : cabecera;
-    try {
-        const datosUsuario = jwt.verify(token, config.jwtSecret);
-        req.usuario = datosUsuario;
-        return next();
-    } catch (error) {
-        console.error('Token verification failed:', error.message);
+    const [type, token] = authHeader.split(" ");
 
-        return res.status(401).json({
-            error: 'Token inválido o caducado'
-        });
+    if (type !== "Bearer" || !token) {
+      return res.status(401).json({ message: "Token mal formado" });
     }
-}
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    req.user = {
+      id: decoded.userId,
+      role: decoded.role
+    };
+
+    next();
+  } catch (error) {
+    return res.status(401).json({ message: "Token inválido o expirado" });
+  }
+};
+
+export default authMiddleware;
