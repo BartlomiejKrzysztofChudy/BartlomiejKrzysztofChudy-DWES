@@ -14,7 +14,7 @@ import teacherEvaluationItemsRoutes from "./routes/teacher/evaluation-items-rout
 import teacherGradesRoutes from "./routes/teacher/grades-routes.js";
 import teacherGradesSummaryRoutes from "./routes/teacher/grades-summary-routes.js";
 import studentGradesSummaryRoutes from "./routes/student/student-grades-summary-routes.js";
-
+import studentSubjectsRoutes from "./routes/student/student-subjects-routes.js";
 
 const app = express();
 
@@ -40,5 +40,6 @@ app.use("/teacher", teacherGradesSummaryRoutes);
 
 app.use("/student", studentAttendanceRoutes);
 app.use("/student", studentGradesSummaryRoutes);
+app.use("/student", studentSubjectsRoutes);
 
 export default app;

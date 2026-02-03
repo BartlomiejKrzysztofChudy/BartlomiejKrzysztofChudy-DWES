@@ -1,5 +1,4 @@
 import Enrollment from "../../models/enrollment-model.js";
-import Subject from "../../models/subject-model.js";
 
 export const getMySubjects = async (studentId) => {
   const enrollments = await Enrollment.find({
