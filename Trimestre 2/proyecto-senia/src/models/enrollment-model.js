@@ -35,7 +35,6 @@ const enrollmentSchema = new mongoose.Schema(
   }
 );
 
-// Evitar doble matrícula activa
 enrollmentSchema.index(
   { student: 1, subject: 1, active: 1 },
   { unique: true }

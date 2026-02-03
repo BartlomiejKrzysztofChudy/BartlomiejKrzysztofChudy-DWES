@@ -31,29 +31,6 @@ const userSchema = new mongoose.Schema(
             type: Boolean,
             default: true,
         },
-
-        preferences: {
-            language: {
-                type: String,
-                default: "es",
-            },
-            theme: {
-                type: String,
-                enum: ["light", "dark"],
-                default: "light",
-            },
-        },
-
-        notifications: {
-            email: {
-                type: Boolean,
-                default: true,
-            },
-            sound: {
-                type: Boolean,
-                default: true,
-            },
-        },
     },
     {
         timestamps: true,

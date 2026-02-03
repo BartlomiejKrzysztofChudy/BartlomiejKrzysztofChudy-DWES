@@ -9,13 +9,11 @@ export const enrollStudent = async (data) => {
     throw new Error("Datos incompletos");
   }
 
-  // Validar alumno
   const studentUser = await User.findById(student);
   if (!studentUser || studentUser.role !== "STUDENT") {
     throw new Error("El usuario no es un alumno válido");
   }
 
-  // Validar asignatura
   const subjectExists = await Subject.findById(subject);
   if (!subjectExists) {
     throw new Error("Asignatura no encontrada");

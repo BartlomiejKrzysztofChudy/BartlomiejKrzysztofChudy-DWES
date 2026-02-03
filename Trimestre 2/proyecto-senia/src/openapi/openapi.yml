@@ -90,29 +90,6 @@ components:
           type: boolean
           default: true
           example: true
-        preferences:
-          type: object
-          properties:
-            language:
-              type: string
-              default: "es"
-              example: "es"
-            theme:
-              type: string
-              enum: [light, dark]
-              default: "light"
-              example: "light"
-        notifications:
-          type: object
-          properties:
-            email:
-              type: boolean
-              default: true
-              example: true
-            sound:
-              type: boolean
-              default: true
-              example: true
         createdAt:
           type: string
           format: date-time
@@ -138,24 +115,6 @@ components:
         active:
           type: boolean
           example: true
-        preferences:
-          type: object
-          properties:
-            language:
-              type: string
-              example: "es"
-            theme:
-              type: string
-              example: "light"
-        notifications:
-          type: object
-          properties:
-            email:
-              type: boolean
-              example: true
-            sound:
-              type: boolean
-              example: true
         createdAt:
           type: string
           format: date-time
@@ -673,25 +632,6 @@ paths:
                   type: string
                   enum: [ADMIN, TEACHER, STUDENT]
                   example: "TEACHER"
-                preferences:
-                  type: object
-                  properties:
-                    language:
-                      type: string
-                      example: "es"
-                    theme:
-                      type: string
-                      enum: [light, dark]
-                      example: "light"
-                notifications:
-                  type: object
-                  properties:
-                    email:
-                      type: boolean
-                      example: true
-                    sound:
-                      type: boolean
-                      example: true
       responses:
         '201':
           description: Usuario creado exitosamente

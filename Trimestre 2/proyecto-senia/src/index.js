@@ -1,4 +1,5 @@
 import 'dotenv/config';
+
 import app from "./app.js";
 import connectMongo from "./loaders/mongodb-loader.js";
 import loadModels from "./loaders/models-loader.js";
