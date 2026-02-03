@@ -16,10 +16,9 @@ export const getMySubjectDetail = async (studentId, subjectId) => {
     throw new Error("No estás matriculado en esta asignatura");
   }
 
-  const subject = await Subject.findById(subjectId).populate(
-    "teacher",
-    "name"
-  );
+  const subject = await Subject.findById(subjectId)
+    .populate("teacher", "name")
+    .populate("course", "name");
 
   const evaluation = await Evaluation.findOne({
     subject: subjectId,
@@ -61,17 +60,18 @@ export const getMySubjectDetail = async (studentId, subjectId) => {
     total > 0 ? Math.round((presents / total) * 100) : 0;
 
   return {
-    subject: {
-      id: subject._id,
-      name: subject.name,
-      teacher: subject.teacher
-    },
+    subjectId: subject._id,
+    name: subject.name,
+    teacher: subject.teacher,
+    course: subject.course,
     evaluation: evaluation
       ? { id: evaluation._id, name: evaluation.name }
       : null,
     grades,
     attendance: {
       percentage,
+      total,
+      presents,
       absences,
       lates
     }

@@ -92,8 +92,7 @@ const run = async () => {
       evaluation = await Evaluation.create({
         subject: subject._id,
         name: "Primera Evaluación",
-        startDate: new Date("2026-02-01"),
-        endDate: new Date("2026-05-30"),
+        order: 1,
         active: true
       });
       console.log("✅ Evaluación creada:", evaluation.name);
@@ -128,7 +127,7 @@ const run = async () => {
           student: student._id,
           item: item._id,
           value: gradeValue,
-          comment: "Buen trabajo"
+          createdBy: teacher._id
         });
         console.log(`   📝 Nota asignada: ${gradeValue}`);
       } else {
@@ -159,7 +158,8 @@ const run = async () => {
           student: student._id,
           subject: subject._id,
           date: new Date(dates[i]),
-          status: statuses[i]
+          status: statuses[i],
+          createdBy: teacher._id
         });
         console.log(`✅ Asistencia registrada: ${dates[i]} - ${statuses[i]}`);
       }
