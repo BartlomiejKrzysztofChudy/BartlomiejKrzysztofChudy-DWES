@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  # Servicio de la API
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: proyecto-senia-api
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      - NODE_ENV=${NODE_ENV:-production}
+      - PORT=${PORT:-3000}
+      - MONGO_URI=${MONGO_URI}
+      - JWT_SECRET=${JWT_SECRET}
+    volumes:
+      # Montar código fuente para desarrollo (comentar en producción)
+      - ./src:/usr/src/app/src
+      - ./api:/usr/src/app/api
+      # Evitar sobrescribir node_modules
+      - /usr/src/app/node_modules
+    networks:
+      - proyecto-senia-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  proyecto-senia-network:
+    driver: bridge

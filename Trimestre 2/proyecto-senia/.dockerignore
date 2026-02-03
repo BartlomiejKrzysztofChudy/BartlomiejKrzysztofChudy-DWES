@@ -1,0 +1,43 @@
+# Dependencias
+node_modules
+npm-debug.log
+
+# Archivos de entorno
+.env
+.env.local
+.env.*.local
+
+# Archivos de Git
+.git
+.gitignore
+
+# Archivos de test
+coverage
+.nyc_output
+test
+
+# Archivos de IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Documentación y recursos
+*.md
+!README.md
+SWAGGER_CHECKLIST.md
+TESTING_GUIDE.md
+ANALISIS_PROYECTO.md
+
+# Scripts de desarrollo
+src/scripts/create-admin.js
+src/scripts/seed-*.js
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de despliegue
+vercel.json
+render.yaml
