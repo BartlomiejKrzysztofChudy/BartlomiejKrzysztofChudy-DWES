@@ -17,7 +17,9 @@ import studentGradesSummaryRoutes from "./routes/student/student-grades-summary-
 import studentSubjectsRoutes from "./routes/student/student-subjects-routes.js";
 import studentDashboardRoutes from "./routes/student/student-dashboard-routes.js";
 import studentDashboardProgressRoutes from "./routes/student/student-dashboard-progress-routes.js";
-
+import studentAchievementsRoutes from "./routes/student/student-achievements-routes.js";
+import teacherDashboardRoutes from "./routes/teacher/teacher-dashboard-routes.js";
+import adminSchedulesRoutes from "./routes/admin/admin-schedules-routes.js";
 
 const app = express();
 
@@ -34,17 +36,20 @@ app.use("/admin/users", adminUsersRoutes);
 app.use("/admin/courses", adminCoursesRoutes);
 app.use("/admin/subjects", adminSubjectsRoutes)
 app.use("/admin/enrollments", adminEnrollmentsRoutes);
+app.use("/admin", adminSchedulesRoutes);
 
 app.use("/teacher", teacherAttendanceRoutes);
 app.use("/teacher", teacherEvaluationsRoutes);
 app.use("/teacher", teacherEvaluationItemsRoutes);
 app.use("/teacher", teacherGradesRoutes);
 app.use("/teacher", teacherGradesSummaryRoutes);
+app.use("/teacher", teacherDashboardRoutes);
 
 app.use("/student", studentAttendanceRoutes);
 app.use("/student", studentGradesSummaryRoutes);
 app.use("/student", studentSubjectsRoutes);
 app.use("/student", studentDashboardRoutes);
 app.use("/student", studentDashboardProgressRoutes);
+app.use("/student", studentAchievementsRoutes);
 
 export default app;
