@@ -3,7 +3,7 @@ import Subject from "../../models/subject-model.js";
 import Evaluation from "../../models/evaluation-model.js";
 import EvaluationItem from "../../models/evaluation-item-model.js";
 import Grade from "../../models/grade-model.js";
-import Attendance from "../../models/attendace-model.js";
+import Attendance from "../../models/attendance-model.js";
 import Schedule from "../../models/schedule-model.js";
 
 export const getMyDashboard = async (studentId) => {
