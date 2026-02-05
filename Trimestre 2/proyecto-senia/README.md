@@ -8,8 +8,6 @@ Este documento define **de forma definitiva y auditada** el backend del sistema 
 * **PROFESOR** → genera datos académicos
 * **ALUMNO** → consume información agregada
 
-> ⚠️ Este README integra **todas las correcciones y ajustes** que fueron apareciendo durante el análisis completo de pantallas.
-> No hay nada provisional ni omitido.
 
 ---
 
