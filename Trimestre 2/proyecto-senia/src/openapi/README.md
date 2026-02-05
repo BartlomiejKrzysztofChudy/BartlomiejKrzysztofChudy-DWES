@@ -18,8 +18,8 @@ openapi/
 
 Una vez que inicies el servidor, puedes acceder a la documentación interactiva en:
 
-- **Swagger UI**: http://localhost:3000/api-docs
-- **OpenAPI JSON**: http://localhost:3000/api-docs.json
+- **Swagger UI**: https://bartlomiejkrzysztofchudy-dwes-1.onrender.com/api-docs/
+- **OpenAPI JSON**: https://bartlomiejkrzysztofchudy-dwes-1.onrender.com/api-docs.json/
 
 ## Uso de Swagger UI
 
