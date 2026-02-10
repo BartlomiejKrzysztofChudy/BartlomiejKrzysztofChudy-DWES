@@ -8,8 +8,8 @@ Necesitas Node.js y MongoDB en local o una URI remota.
 1. Crea `.env` en la raiz:
 ```env
 PORT=3000
-MONGO_URI=tu_uri_de_mongo
-JWT_SECRET=tu_secreto
+MONGO_URI=uri_de_mongo
+JWT_SECRET=secreto
 ```
 2. Instala dependencias:
 ```bash
@@ -46,7 +46,7 @@ https://bartlomiejkrzysztofchudy-dwes-1.onrender.com/api-docs/
 ```
 
 **Futuras implementaciones**  
-Pendiente completar modulos administrativos de logros, anuncios
+Pendiente completar modulos administrativos de logros, anuncios 
 
 ---
 
