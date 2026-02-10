@@ -38,8 +38,6 @@ tags:
     description: Gestión de items de evaluación por profesores
   - name: Teacher - Calificaciones
     description: Gestión de calificaciones por profesores
-  - name: Teacher - Resumen
-    description: Resumen de calificaciones por profesor
   - name: Student - Dashboard
     description: Panel principal y progreso del estudiante
   - name: Student - Asignaturas
@@ -1066,11 +1064,151 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        '401':
-          description: No autenticado
+          '401':
+            description: No autenticado
+            content:
+              application/json:
+                schema:
+
+  /admin/subjects/{subjectId}/schedule:
+    get:
+      tags:
+        - Admin - Horarios
+      summary: Obtener horarios por asignatura
+      description: Obtiene los horarios configurados para una asignatura (Solo ADMIN)
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: subjectId
+          required: true
+          schema:
+            type: string
+          description: ID de la asignatura
+          example: "697f9c3f1405658893cdb69c"
+      responses:
+        '200':
+          description: Lista de horarios
           content:
             application/json:
               schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                      example: "698ad9684b6acbbc1ff5291b"
+                    subject:
+                      type: string
+                      example: "697f9c3f1405658893cdb69c"
+                    dayOfWeek:
+                      type: number
+                      example: 2
+                    startTime:
+                      type: string
+                      example: "13:00"
+                    endTime:
+                      type: string
+                      example: "14:00"
+                    classroom:
+                      type: string
+                      example: "A-207"
+                    createdAt:
+                      type: string
+                      format: date-time
+                    updatedAt:
+                      type: string
+                      format: date-time
+        '401':
+          description: No autenticado
+        '403':
+          description: No autorizado
+        '404':
+          description: Asignatura no encontrada
+
+    post:
+      tags:
+        - Admin - Horarios
+      summary: Crear o actualizar horario
+      description: Crea o actualiza (upsert) el horario de una asignatura para un día específico (Solo ADMIN)
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: subjectId
+          required: true
+          schema:
+            type: string
+          description: ID de la asignatura
+          example: "697f9c3f1405658893cdb69c"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - dayOfWeek
+                - startTime
+                - endTime
+                - classroom
+              properties:
+                dayOfWeek:
+                  type: number
+                  minimum: 0
+                  maximum: 6
+                  description: Día de la semana (0=Domingo, 6=Sábado)
+                  example: 2
+                startTime:
+                  type: string
+                  example: "13:00"
+                endTime:
+                  type: string
+                  example: "14:00"
+                classroom:
+                  type: string
+                  example: "A-207"
+      responses:
+        '201':
+          description: Horario creado/actualizado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    example: "698ad9684b6acbbc1ff5291b"
+                  subject:
+                    type: string
+                    example: "697f9c3f1405658893cdb69c"
+                  dayOfWeek:
+                    type: number
+                    example: 2
+                  startTime:
+                    type: string
+                    example: "13:00"
+                  endTime:
+                    type: string
+                    example: "14:00"
+                  classroom:
+                    type: string
+                    example: "A-207"
+                  createdAt:
+                    type: string
+                    format: date-time
+                  updatedAt:
+                    type: string
+                    format: date-time
+        '400':
+          description: Datos inválidos
+        '401':
+          description: No autenticado
+        '403':
+          description: No autorizado
+        '404':
+          description: Asignatura no encontrada
                 $ref: '#/components/schemas/Error'
         '403':
           description: No autorizado
@@ -1468,14 +1606,14 @@ paths:
           application/json:
             schema:
               type: object
-              required:
-                - student
-                - value
-              properties:
-                student:
-                  type: string
-                  description: ID del estudiante
-                  example: "697f82c7d7caa6b6652a85ec"
+                required:
+                  - studentId
+                  - value
+                properties:
+                  studentId:
+                    type: string
+                    description: ID del estudiante
+                    example: "697f82c7d7caa6b6652a85ec"
                 value:
                   type: number
                   minimum: 0
@@ -1690,57 +1828,6 @@ paths:
           description: No autorizado
         '404':
           description: Asignatura no encontrada
-
-  /student/grades/summary:
-    get:
-      tags:
-        - Student - Calificaciones
-      summary: Resumen de calificaciones del estudiante
-      description: Obtiene el resumen de todas las calificaciones agrupadas por asignatura
-      security:
-        - bearerAuth: []
-      responses:
-        '200':
-          description: Resumen de calificaciones
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    subject:
-                      $ref: '#/components/schemas/SubjectPopulated'
-                    evaluations:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          evaluation:
-                            $ref: '#/components/schemas/Evaluation'
-                          items:
-                            type: array
-                            items:
-                              type: object
-                              properties:
-                                item:
-                                  $ref: '#/components/schemas/EvaluationItem'
-                                grade:
-                                  type: number
-                                  nullable: true
-                                  example: 8.5
-                          average:
-                            type: number
-                            nullable: true
-                            example: 8.2
-                    overall_average:
-                      type: number
-                      nullable: true
-                      example: 8.5
-        '401':
-          description: No autenticado
-        '403':
-          description: No autorizado
 
   /student/attendance:
     get:
