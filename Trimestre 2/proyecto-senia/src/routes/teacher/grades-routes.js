@@ -9,7 +9,7 @@ const router = Router();
 router.use(authMiddleware);
 router.use(roleMiddleware("TEACHER"));
 
-router.post( "/evaluations/items/:itemId/grades", gradesController.setGrade);
-router.get( "/evaluations/items/:itemId/grades", gradesController.getGradesByItem);
+router.post("/evaluations/items/:itemId/grades", gradesController.setGrade);
+router.get("/evaluations/items/:itemId/grades", gradesController.getGradesByItem);
 
 export default router;

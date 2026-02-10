@@ -30,7 +30,5 @@ export const createEvaluationItem = async ({
   return item;
 };
 
-export const getItemsByEvaluation = async (evaluationId) => {
-  return EvaluationItem.find({ evaluation: evaluationId, active: true })
-    .sort({ createdAt: 1 });
-};
+export const getItemsByEvaluation = async (evaluationId) => EvaluationItem.find({ evaluation: evaluationId, active: true })
+  .sort({ createdAt: 1 });

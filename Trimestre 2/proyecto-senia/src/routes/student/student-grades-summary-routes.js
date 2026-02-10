@@ -9,6 +9,6 @@ const router = Router();
 router.use(authMiddleware);
 router.use(roleMiddleware("STUDENT"));
 
-router.get( "/evaluations/:evaluationId/grades/summary", getMyGradesSummary);
+router.get("/evaluations/:evaluationId/grades/summary", getMyGradesSummary);
 
 export default router;

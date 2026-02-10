@@ -9,7 +9,7 @@ const router = Router();
 router.use(authMiddleware);
 router.use(roleMiddleware("TEACHER"));
 
-router.get( "/evaluations/:evaluationId/items", itemsController.getItemsByEvaluation);
-router.post( "/evaluations/:evaluationId/items", itemsController.createEvaluationItem);
+router.get("/evaluations/:evaluationId/items", itemsController.getItemsByEvaluation);
+router.post("/evaluations/:evaluationId/items", itemsController.createEvaluationItem);
 
 export default router;

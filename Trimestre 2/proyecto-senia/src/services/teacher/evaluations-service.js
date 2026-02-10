@@ -26,7 +26,5 @@ export const createEvaluation = async ({
   return evaluation;
 };
 
-export const getEvaluationsBySubject = async (subjectId) => {
-  return Evaluation.find({ subject: subjectId, active: true })
-    .sort({ order: 1 });
-};
+export const getEvaluationsBySubject = async (subjectId) => Evaluation.find({ subject: subjectId, active: true })
+  .sort({ order: 1 });

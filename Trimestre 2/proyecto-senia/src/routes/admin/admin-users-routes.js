@@ -5,8 +5,8 @@ import { createUser, getUsers } from "../../controllers/admin/admin-users-contro
 
 const router = Router();
 
-router.post( "/", authMiddleware, roleMiddleware("ADMIN"), createUser);
+router.post("/", authMiddleware, roleMiddleware("ADMIN"), createUser);
 
-router.get( "/",authMiddleware, roleMiddleware("ADMIN"), getUsers);
+router.get("/", authMiddleware, roleMiddleware("ADMIN"), getUsers);
 
 export default router;

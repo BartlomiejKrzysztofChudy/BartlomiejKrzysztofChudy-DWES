@@ -60,11 +60,9 @@ export const markAttendance = async ({
   return results;
 };
 
-export const getAttendanceBySubject = async (subjectId) => {
-  return Attendance.find({ subject: subjectId })
-    .populate("student", "name email")
-    .sort({ date: 1 });
-};
+export const getAttendanceBySubject = async (subjectId) => Attendance.find({ subject: subjectId })
+  .populate("student", "name email")
+  .sort({ date: 1 });
 
 export const getAttendanceSummary = async ({ teacherId, subjectId }) => {
   const subject = await Subject.findById(subjectId);

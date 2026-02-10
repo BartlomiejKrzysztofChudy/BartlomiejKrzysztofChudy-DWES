@@ -11,21 +11,19 @@ import Subject from "../models/subject-model.js";
 import User from "../models/user-model.js";
 import UserAchievement from "../models/user-achievement-model.js";
 
-const loadModels = () => {
-  return {
-    Achievement,
-    Announcement,
-    Attendance,
-    Course,
-    Enrollment,
-    Evaluation,
-    EvaluationItem,
-    Grade,
-    Schedule,
-    Subject,
-    User,
-    UserAchievement
-  };
-};
+const loadModels = () => ({
+  Achievement,
+  Announcement,
+  Attendance,
+  Course,
+  Enrollment,
+  Evaluation,
+  EvaluationItem,
+  Grade,
+  Schedule,
+  Subject,
+  User,
+  UserAchievement
+});
 
 export default loadModels;

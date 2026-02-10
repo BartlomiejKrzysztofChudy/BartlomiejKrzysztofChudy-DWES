@@ -8,8 +8,8 @@ export const getMyAchievements = async (studentId) => {
     .populate("achievement");
 
   return achievements
-    .filter(ua => ua.achievement)
-    .map(ua => ({
+    .filter((ua) => ua.achievement)
+    .map((ua) => ({
       id: ua.achievement._id,
       name: ua.achievement.name,
       description: ua.achievement.description,

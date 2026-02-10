@@ -8,7 +8,7 @@ const router = Router();
 router.use(authMiddleware);
 router.use(roleMiddleware("ADMIN"));
 
-router.post( "/subjects/:subjectId/schedule",upsertSchedule);
-router.get( "/subjects/:subjectId/schedule", getSchedulesBySubject);
+router.post("/subjects/:subjectId/schedule", upsertSchedule);
+router.get("/subjects/:subjectId/schedule", getSchedulesBySubject);
 
 export default router;

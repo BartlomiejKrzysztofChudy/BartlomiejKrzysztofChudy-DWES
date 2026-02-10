@@ -17,7 +17,7 @@ export const getMyDashboard = async (studentId) => {
   const subjectsDashboard = [];
 
   for (const enrollment of enrollments) {
-    const subject = enrollment.subject;
+    const { subject } = enrollment;
 
     const evaluation = await Evaluation.findOne({
       subject: subject._id,
@@ -58,7 +58,7 @@ export const getMyDashboard = async (studentId) => {
     });
 
     const totalAttendance = attendances.length;
-    const presents = attendances.filter(a => a.status === "PRESENT").length;
+    const presents = attendances.filter((a) => a.status === "PRESENT").length;
 
     const attendancePercentage =
       totalAttendance > 0

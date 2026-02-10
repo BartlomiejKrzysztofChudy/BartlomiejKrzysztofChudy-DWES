@@ -21,9 +21,9 @@ export const getMyProgress = async (studentId) => {
   };
 
   const recentAchievements = userAchievements
-    .filter(ua => ua.achievement)
+    .filter((ua) => ua.achievement)
     .slice(0, 2)
-    .map(ua => ({
+    .map((ua) => ({
       name: ua.achievement.name,
       description: ua.achievement.description,
       achievedAt: ua.achievedAt

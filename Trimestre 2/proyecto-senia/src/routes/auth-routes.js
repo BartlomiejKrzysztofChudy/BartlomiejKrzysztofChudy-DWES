@@ -7,7 +7,10 @@ const router = Router();
 
 router.post("/login", login);
 
-router.get( "/admin-test", authMiddleware, roleMiddleware("ADMIN"),
+router.get(
+  "/admin-test",
+  authMiddleware,
+  roleMiddleware("ADMIN"),
   (req, res) => {
     res.json({ message: "Solo ADMIN puede ver esto" });
   }

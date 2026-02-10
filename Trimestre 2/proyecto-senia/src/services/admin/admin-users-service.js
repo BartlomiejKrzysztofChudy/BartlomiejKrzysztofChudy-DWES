@@ -3,7 +3,9 @@ import bcrypt from "bcrypt";
 import User from "../../models/user-model.js";
 
 export const createUser = async (data) => {
-  const { name, email, password, role } = data;
+  const {
+    name, email, password, role
+  } = data;
 
   if (!name || !email || !password || !role) {
     throw new Error("Datos incompletos");
@@ -33,6 +35,4 @@ export const createUser = async (data) => {
   };
 };
 
-export const getUsers = async () => {
-  return User.find({}, "-password").sort({ createdAt: -1 });
-};
+export const getUsers = async () => User.find({}, "-password").sort({ createdAt: -1 });

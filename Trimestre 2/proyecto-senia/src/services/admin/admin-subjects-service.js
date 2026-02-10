@@ -3,7 +3,9 @@ import Course from "../../models/course-model.js";
 import User from "../../models/user-model.js";
 
 export const createSubject = async (data) => {
-  const { name, course, teacher, type } = data;
+  const {
+    name, course, teacher, type
+  } = data;
 
   if (!name || !course || !teacher || !type) {
     throw new Error("Datos incompletos");
@@ -30,8 +32,6 @@ export const createSubject = async (data) => {
   return subject;
 };
 
-export const getSubjectsByCourse = async (courseId) => {
-  return Subject.find({ course: courseId })
-    .populate("teacher", "name email")
-    .sort({ createdAt: -1 });
-};
+export const getSubjectsByCourse = async (courseId) => Subject.find({ course: courseId })
+  .populate("teacher", "name email")
+  .sort({ createdAt: -1 });

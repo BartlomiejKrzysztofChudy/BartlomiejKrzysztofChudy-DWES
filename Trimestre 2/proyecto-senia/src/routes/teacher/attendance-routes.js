@@ -9,8 +9,8 @@ const router = Router();
 router.use(authMiddleware);
 router.use(roleMiddleware("TEACHER"));
 
-router.get( "/subjects/:subjectId/attendance", attendanceController.getAttendanceBySubject);
-router.post( "/subjects/:subjectId/attendance", attendanceController.markAttendance);
-router.get( "/subjects/:subjectId/attendance/summary", attendanceController.getAttendanceSummary);
+router.get("/subjects/:subjectId/attendance", attendanceController.getAttendanceBySubject);
+router.post("/subjects/:subjectId/attendance", attendanceController.markAttendance);
+router.get("/subjects/:subjectId/attendance/summary", attendanceController.getAttendanceSummary);
 
 export default router;

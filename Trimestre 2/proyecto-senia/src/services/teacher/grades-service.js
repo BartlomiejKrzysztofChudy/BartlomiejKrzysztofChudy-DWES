@@ -47,8 +47,6 @@ export const setGrade = async ({
   return grade;
 };
 
-export const getGradesByItem = async (itemId) => {
-  return Grade.find({ item: itemId })
-    .populate("student", "name email")
-    .sort({ createdAt: 1 });
-};
+export const getGradesByItem = async (itemId) => Grade.find({ item: itemId })
+  .populate("student", "name email")
+  .sort({ createdAt: 1 });

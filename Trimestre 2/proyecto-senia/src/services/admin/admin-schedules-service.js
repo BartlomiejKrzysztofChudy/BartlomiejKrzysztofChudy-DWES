@@ -2,7 +2,9 @@ import Schedule from "../../models/schedule-model.js";
 import Subject from "../../models/subject-model.js";
 
 export const upsertSchedule = async (subjectId, data) => {
-  const { dayOfWeek, startTime, endTime, classroom } = data;
+  const {
+    dayOfWeek, startTime, endTime, classroom
+  } = data;
 
   if (
     dayOfWeek === undefined ||
@@ -39,6 +41,4 @@ export const upsertSchedule = async (subjectId, data) => {
   return schedule;
 };
 
-export const getSchedulesBySubject = async (subjectId) => {
-  return Schedule.find({ subject: subjectId }).sort({ dayOfWeek: 1 });
-};
+export const getSchedulesBySubject = async (subjectId) => Schedule.find({ subject: subjectId }).sort({ dayOfWeek: 1 });

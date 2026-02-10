@@ -13,7 +13,7 @@ export const getMySubjects = async (studentId) => {
   });
 
   return enrollments.map((enrollment) => {
-    const subject = enrollment.subject;
+    const { subject } = enrollment;
 
     return {
       subjectId: subject._id,

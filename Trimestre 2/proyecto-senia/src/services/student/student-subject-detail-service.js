@@ -25,7 +25,7 @@ export const getMySubjectDetail = async (studentId, subjectId) => {
     active: true
   });
 
-  let grades = [];
+  const grades = [];
 
   if (evaluation) {
     const items = await EvaluationItem.find({
@@ -52,9 +52,9 @@ export const getMySubjectDetail = async (studentId, subjectId) => {
   });
 
   const total = attendances.length;
-  const absences = attendances.filter(a => a.status === "ABSENT").length;
-  const lates = attendances.filter(a => a.status === "LATE").length;
-  const presents = attendances.filter(a => a.status === "PRESENT").length;
+  const absences = attendances.filter((a) => a.status === "ABSENT").length;
+  const lates = attendances.filter((a) => a.status === "LATE").length;
+  const presents = attendances.filter((a) => a.status === "PRESENT").length;
 
   const percentage =
     total > 0 ? Math.round((presents / total) * 100) : 0;

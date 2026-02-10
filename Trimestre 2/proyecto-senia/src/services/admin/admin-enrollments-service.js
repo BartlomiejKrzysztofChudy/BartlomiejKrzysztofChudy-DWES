@@ -29,8 +29,6 @@ export const enrollStudent = async (data) => {
   return enrollment;
 };
 
-export const getEnrollmentsBySubject = async (subjectId) => {
-  return Enrollment.find({ subject: subjectId, active: true })
-    .populate("student", "name email")
-    .sort({ createdAt: 1 });
-};
+export const getEnrollmentsBySubject = async (subjectId) => Enrollment.find({ subject: subjectId, active: true })
+  .populate("student", "name email")
+  .sort({ createdAt: 1 });

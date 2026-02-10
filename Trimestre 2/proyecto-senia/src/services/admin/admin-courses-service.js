@@ -20,6 +20,4 @@ export const createCourse = async (data) => {
   return course;
 };
 
-export const getCourses = async () => {
-  return Course.find().sort({ createdAt: -1 });
-};
+export const getCourses = async () => Course.find().sort({ createdAt: -1 });
