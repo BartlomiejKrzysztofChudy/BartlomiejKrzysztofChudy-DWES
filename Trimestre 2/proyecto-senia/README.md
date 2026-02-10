@@ -74,7 +74,6 @@ Swagger disponible en:
 http://localhost:3000/api-docs
 ```
 
-Para mas detalle ver `DOCKER.md`.
 
 ---
 
