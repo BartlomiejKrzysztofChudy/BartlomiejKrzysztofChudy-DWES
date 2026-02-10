@@ -1,428 +1,151 @@
-# SENIA – Backend
+# SENIA - Backend
 
-## Arquitectura Completa Separada por Roles
+SENIA (Sistema Educativo de Notas, Informacion y Asistencia) es un backend que centraliza notas, asistencia y evaluaciones por asignatura. El objetivo es que la informacion academica este unificada, con control por rol y con reglas claras de quien puede crear, modificar o consultar cada dato.
 
-Este documento define **de forma definitiva y auditada** el backend del sistema **SENIA**, separando claramente **módulos, modelos y responsabilidades por rol**:
+**Instalacion y ejecucion local**  
+Necesitas Node.js y MongoDB en local o una URI remota.
 
-* **ADMIN** → define estructura y reglas
-* **PROFESOR** → genera datos académicos
-* **ALUMNO** → consume información agregada
-
-
----
-
-## 📚 Documentación de la API
-
-La API REST está completamente documentada usando **OpenAPI 3.0** (Swagger).
-
-### Acceso a la Documentación
-
-Una vez que inicies el servidor:
-
+1. Crea `.env` en la raiz:
+```env
+PORT=3000
+MONGO_URI=tu_uri_de_mongo
+JWT_SECRET=tu_secreto
+```
+2. Instala dependencias:
+```bash
+npm install
+```
+3. Arranca el servidor:
 ```bash
 npm start
 ```
 
-Puedes acceder a la documentación interactiva en:
+**Arquitectura**  
+API REST en Express con Mongoose. La logica esta separada por capas para mantener el codigo ordenado:  
+`routes -> controllers -> services -> models`.  
+El acceso se valida con JWT y se restringe por rol en cada ruta.
 
-- **Swagger UI**: https://bartlomiejkrzysztofchudy-dwes-1.onrender.com/api-docs/
-- **OpenAPI JSON**: https://bartlomiejkrzysztofchudy-dwes-1.onrender.com/api-docs.json/
+**Roles**  
+Resumen directo de responsabilidad por rol:
+- `ADMIN`: crea estructura academica, usuarios y matriculas.
+- `TEACHER`: gestiona asistencia, evaluaciones e items de evaluacion.
+- `STUDENT`: consulta su progreso, asistencia y notas.
 
-### Características de Swagger UI
+**Swagger**  
+La documentacion OpenAPI esta disponible en:
 
-✅ Documentación interactiva de todos los endpoints  
-✅ Prueba endpoints directamente desde el navegador  
-✅ Autenticación JWT integrada  
-✅ Esquemas de datos completos con ejemplos  
-✅ Códigos de respuesta documentados  
-✅ Filtrado y búsqueda de endpoints  
+Local:
+```text
+http://localhost:3000/api-docs
+http://localhost:3000/api-docs.json
+```
 
-### Cómo usar Swagger UI
+Desplegado (Render):
+```text
+https://bartlomiejkrzysztofchudy-dwes-1.onrender.com/api-docs/
+```
 
-1. **Autenticación**: 
-   - Usa `POST /auth/login` para obtener tu token JWT
-   - Haz clic en el botón "Authorize" 🔒
-   - Ingresa: `Bearer <tu-token>`
-
-2. **Probar endpoints**:
-   - Expande cualquier endpoint
-   - Haz clic en "Try it out"
-   - Completa los parámetros
-   - Haz clic en "Execute"
-
-3. **Ver respuestas**:
-   - Revisa el código de estado
-   - Inspecciona el cuerpo de la respuesta
-   - Copia el ejemplo para tus pruebas
-
-Para más detalles, consulta [src/openapi/README.md](src/openapi/README.md)
+**Futuras implementaciones**  
+Pendiente completar modulos administrativos de logros, anuncios
 
 ---
 
-## 1. Principios generales del backend
+## Docker (local)
 
-* Node.js + Express
-* MongoDB + Mongoose
-* API REST
-* JWT para autenticación
-* Arquitectura por capas:
+Requisitos: Docker Desktop y Docker Compose.
 
-  * routes → controllers → services → models
+**Levantar servicios**
+```bash
+docker compose up -d
+```
 
-### Decisiones clave
+**Ver logs**
+```bash
+docker compose logs -f api
+```
 
-* No se guardan medias, porcentajes ni niveles
-* Todo lo visible para profesor/alumno se **calcula**
-* Control temporal estricto (fechas de matrícula)
-* Soft delete en entidades críticas
-* Seguridad basada en **rol + pertenencia (Enrollment)**
+**Parar servicios**
+```bash
+docker compose down
+```
+
+Swagger disponible en:
+```text
+http://localhost:3000/api-docs
+```
+
+Para mas detalle ver `DOCKER.md`.
 
 ---
 
-## 2. MODELOS DEL SISTEMA (GLOBAL)
+## Tests y calidad
 
-Estos modelos existen **una sola vez** y son compartidos por todos los roles.
+**Tests**
+```bash
+npm test
+```
 
-### User
+**Cobertura**
+```bash
+npm run test:coverage
+```
 
-```js
-{
-  name,
-  email,
-  password,
-  role,           // ADMIN | TEACHER | STUDENT
-  active,
+**SonarQube (local)**
+```bash
+npm run sonar:local
+```
 
-  preferences: {
-    language,
-    theme
-  },
-
-  notifications: {
-    email,
-    sound
-  },
-
-  createdAt
-}
+**SonarQube (Docker)**
+```bash
+npm run sonar:docker
 ```
 
 ---
 
-### Course
+## Relacion por roles y modelos
 
-```js
-{
-  name,
-  active,
-  createdAt
-}
-```
+Esta seccion explica como se conectan los roles con los modelos principales. La idea es que cada rol actue solo sobre la parte que le corresponde.
 
----
+**ADMIN**  
+Define la base del sistema y mantiene la estructura:
+- Crea cursos y asignaturas: `Course`, `Subject`.
+- Configura horarios: `Schedule`.
+- Matricula alumnos: `Enrollment`.
+- Gestiona usuarios: `User`.
+- (Pendiente) Gestion de logros y anuncios: `Achievement`, `Announcement`.
 
-### Subject
+**TEACHER**  
+Trabaja sobre sus propias asignaturas (`Subject.teacher`):
+- Registra asistencia: `Attendance`.
+- Crea evaluaciones e items: `Evaluation`, `EvaluationItem`.
+- Pone calificaciones: `Grade`.
 
-```js
-{
-  name,
-  courseId,
-  teacherId,
-  type,           // TRONCAL | OPTATIVA
-  active
-}
-```
+**STUDENT**  
+Consume su informacion personal:
+- Ve asignaturas matriculadas: `Enrollment`.
+- Consulta asistencia: `Attendance`.
+- Consulta notas por evaluacion: `Grade`.
+- Consulta logros si existen: `Achievement`, `UserAchievement`.
 
----
-
-### Schedule
-
-```js
-{
-  subjectId,
-  dayOfWeek,
-  startTime,
-  endTime,
-  classroom
-}
-```
+**Relaciones clave**
+- `User (STUDENT)` <-> `Subject` por `Enrollment`.
+- `Subject` <-> `Schedule` (por dia).
+- `Subject` <-> `Evaluation` <-> `EvaluationItem` <-> `Grade`.
+- `User (STUDENT)` <-> `Attendance`.
+- `User` <-> `Achievement` por `UserAchievement`.
 
 ---
 
-### Enrollment
+## Diagramas
 
-```js
-{
-  studentId,
-  subjectId,
-  startDate,
-  endDate,
-  active
-}
-```
+### Modelo ER
+![ER](docs/images/er.png)
 
----
+### Flujo por rol
+![Roles Flow](docs/images/roles-flow.png)
 
-### Attendance
+### Arquitectura
+![Architecture](docs/images/architecture.png)
 
-```js
-{
-  studentId,
-  subjectId,
-  date,
-  status,         // PRESENT | ABSENT | LATE
-  createdBy,
-  updatedAt
-}
-```
-
----
-
-### Evaluation
-
-```js
-{
-  subjectId,
-  name,
-  order,
-  active
-}
-```
-
----
-
-### EvaluationItem
-
-```js
-{
-  evaluationId,
-  name,
-  type,           // EXAM | PRACTICE | ATTITUDE | PROJECT | CUSTOM
-  weight,
-  active
-}
-```
-
----
-
-### Grade
-
-```js
-{
-  studentId,
-  subjectId,
-  evaluationId,
-  itemId,
-  value,
-  createdBy,
-  updatedAt
-}
-```
-
----
-
-### Achievement
-
-```js
-{
-  name,
-  description,
-  icon,
-  conditionType,
-  conditionValue,
-  active
-}
-```
-
----
-
-### UserAchievement
-
-```js
-{
-  userId,
-  achievementId,
-  achievedAt
-}
-```
-
----
-
-### Announcement
-
-```js
-{
-  title,
-  message,
-  authorId,
-  targetType,
-  targetRoles,
-  targetCourses,
-  publishedAt,
-  expiresAt,
-  active
-}
-```
-
----
-
-## 3. MÓDULOS Y ENDPOINTS POR ROL
-
----
-
-## 🔴 ROL ADMIN
-
-### Responsabilidad
-
-* Definir estructura académica
-* Gestionar usuarios
-* Definir reglas (logros)
-* Ver estadísticas globales
-
-### Módulos
-
-* users
-* courses
-* subjects
-* schedules
-* achievements
-* announcements
-* dashboard-admin
-
-### Endpoints
-
-```
-GET    /admin/dashboard/summary
-GET    /admin/dashboard/students-by-course
-
-GET    /admin/users
-POST   /admin/users
-PUT    /admin/users/:id
-PATCH  /admin/users/:id/disable
-
-GET    /admin/courses
-POST   /admin/courses
-PUT    /admin/courses/:id
-PATCH  /admin/courses/:id/disable
-
-POST   /admin/courses/:courseId/subjects
-PUT    /admin/subjects/:id
-PATCH  /admin/subjects/:id/assign-teacher
-
-GET    /admin/achievements
-POST   /admin/achievements
-PUT    /admin/achievements/:id
-DELETE /admin/achievements/:id
-
-GET    /admin/announcements
-POST   /admin/announcements
-```
-
----
-
-## 🟠 ROL PROFESOR
-
-### Responsabilidad
-
-* Pasar lista
-* Evaluar alumnos
-* Generar datos académicos
-
-### Módulos
-
-* teacher-dashboard
-* attendance
-* evaluations
-* evaluation-items
-* grades
-
-### Endpoints
-
-```
-GET    /teacher/dashboard
-
-GET    /teacher/subjects/:subjectId/attendance
-POST   /teacher/subjects/:subjectId/attendance
-GET    /teacher/subjects/:subjectId/attendance/summary
-
-GET    /teacher/subjects/:subjectId/evaluations
-GET    /teacher/evaluations/:evaluationId/items
-
-GET    /teacher/subjects/:subjectId/grades
-POST   /teacher/subjects/:subjectId/grades
-GET    /teacher/subjects/:subjectId/grades/export
-```
-
----
-
-## 🟢 ROL ALUMNO
-
-### Responsabilidad
-
-* Consultar su progreso
-* Ver asistencia y notas
-* Visualizar logros
-
-### Módulos
-
-* student-dashboard
-* student-attendance
-* student-achievements
-
-### Endpoints
-
-```
-GET    /student/dashboard
-GET    /student/subjects
-GET    /student/subjects/:subjectId
-
-GET    /student/attendance?month=&year=
-GET    /student/achievements
-```
-
----
-
-## 4. CONFIGURACIÓN (COMÚN A TODOS)
-
-```
-PATCH /users/me/password
-PATCH /users/me/preferences
-PATCH /users/me/notifications
-```
-
----
-
-## 5. DATOS DERIVADOS (NO SE GUARDAN)
-
-* Medias de notas
-* % asistencia
-* Nivel del alumno
-* Progreso de logros
-
-Todo se calcula mediante **services**.
-
----
-
-## 6. FUTURAS MEJORAS (OBLIGATORIO)
-
-* Configuración global del centro
-* Auditoría y logs
-* Sistema de permisos dinámicos
-* Ranking de alumnos
-* Exportación de boletines completos
-* Notificaciones en tiempo real
-* Caché de agregados
-* Motor avanzado de reglas de logros
-* API pública
-
----
-
-## 7. Conclusión
-
-Este backend:
-
-* está completo
-* no deja huecos funcionales
-* separa correctamente responsabilidades
-* está preparado para crecer
-
+### Secuencia de asistencia
+![Attendance Sequence](docs/images/attendance-sequence.png)
