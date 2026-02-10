@@ -1156,9 +1156,9 @@ paths:
               properties:
                 dayOfWeek:
                   type: number
-                  minimum: 0
-                  maximum: 6
-                  description: Día de la semana (0=Domingo, 6=Sábado)
+                  minimum: 1
+                  maximum: 5
+                  description: Día de la semana (1=Lunes, 5=Viernes)
                   example: 2
                 startTime:
                   type: string

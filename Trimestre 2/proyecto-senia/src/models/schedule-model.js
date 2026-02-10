@@ -11,8 +11,8 @@ const scheduleSchema = new mongoose.Schema(
     dayOfWeek: {
       type: Number,
       required: true,
-      min: 0,
-      max: 6
+      min: 1,
+      max: 5
     },
 
     startTime: {
