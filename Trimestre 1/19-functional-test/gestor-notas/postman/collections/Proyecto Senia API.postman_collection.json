@@ -1,0 +1,899 @@
+{
+  "info": {
+    "_postman_id": "7ca2b51e-a454-4437-8577-20c4db7c5d6e",
+    "name": "Proyecto Senia API",
+    "description": "Coleccion generada desde las rutas de src/app.js",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "id": "11fe7403-a0cf-48b3-a9d2-66426491f517",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@senia.edu\",\n  \"password\": \"\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Admin Test",
+          "id": "6d0c4edd-4215-46b7-9bd4-b4afb33a7e48",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/admin-test",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "admin-test"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "119faaed-0771-486e-aa1c-9e7a2875bb95"
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Create User",
+          "id": "4edb7ca6-76da-46d0-960b-c5899930bcc3",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Rafael Roladan Ramirez\",\n  \"email\": \"rafael@senia.com\",\n  \"password\": \"123456\",\n  \"role\": \"ADMIN\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Users",
+          "id": "b42acd80-de74-4846-bd5c-21441f224847",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Course",
+          "id": "d3dd2a0b-5f5c-4b1a-ad82-41f11b8c2459",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"1ª Tecnico Superior Asir\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin/courses",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "courses"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Courses",
+          "id": "ed7d91f1-a4be-474c-bfa3-00c26236ff56",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/courses",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "courses"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Subject",
+          "id": "494f6c75-6157-4b72-bd97-58ca8ad84c60",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Digitalizacion\",\n  \"course\": \"{{courseId}}\",\n  \"teacher\": \"698394b1f5192d6a677918d5\",\n  \"type\": \"TRONCAL\",\n  \"active\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin/subjects",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "subjects"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Subjects By Course",
+          "id": "1712a528-15ed-4fe6-9c8f-16578f222ff2",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/subjects/course/{{courseId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "subjects",
+                "course",
+                "{{courseId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Enroll Student",
+          "id": "e10dd728-1321-4039-836e-8c1042b8b799",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"studentId\": \"698394b2f5192d6a677918df\",\n  \"subjectId\": \"{{subjectId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin/enrollments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "enrollments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Enrollments By Subject",
+          "id": "76938718-8a93-4a84-9eb3-1b872bbb669a",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/enrollments/subject/{{subjectId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "enrollments",
+                "subject",
+                "{{subjectId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Upsert Schedule",
+          "id": "58f4e6ba-606c-4767-9188-365ffa3b8962",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"days\": []\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin/subjects/{{subjectId}}/schedule",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "subjects",
+                "{{subjectId}}",
+                "schedule"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Schedules By Subject",
+          "id": "d0b21d83-c23d-421b-a3ab-e2ea6fd1ce7a",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/subjects/{{subjectId}}/schedule",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "subjects",
+                "{{subjectId}}",
+                "schedule"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "a4112723-b685-4437-9ba3-9f88400d0782"
+    },
+    {
+      "name": "Teacher",
+      "item": [
+        {
+          "name": "Get Attendance By Subject",
+          "id": "f11e8e49-ee82-4019-9a58-35b4f75518b3",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/teacher/subjects/{{subjectId}}/attendance",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "teacher",
+                "subjects",
+                "{{subjectId}}",
+                "attendance"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Mark Attendance",
+          "id": "30783d30-e09d-48c9-bf78-9fdf8b729d9f",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"2026-02-10\",\n  \"attendances\": [\n    { \"studentId\": \"698394b2f5192d6a677918e4\", \"status\": \"PRESENT\" }\n  ]\n}\n"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/teacher/subjects/{{subjectId}}/attendance",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "teacher",
+                "subjects",
+                "{{subjectId}}",
+                "attendance"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Attendance Summary",
+          "id": "c74786ac-9013-4d23-934d-ba6fdb5489b1",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/teacher/subjects/{{subjectId}}/attendance/summary",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "teacher",
+                "subjects",
+                "{{subjectId}}",
+                "attendance",
+                "summary"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Evaluations By Subject",
+          "id": "cc15cb74-c6fc-4199-a21f-9b178db37e41",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/teacher/subjects/{{subjectId}}/evaluations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "teacher",
+                "subjects",
+                "{{subjectId}}",
+                "evaluations"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Evaluation",
+          "id": "c243b78e-61ae-4545-9f5b-2e844e469802",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"weight\": 0\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/teacher/subjects/{{subjectId}}/evaluations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "teacher",
+                "subjects",
+                "{{subjectId}}",
+                "evaluations"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Items By Evaluation",
+          "id": "edd08040-4f5a-49d8-aef1-ca35f6fad42f",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/teacher/evaluations/{{evaluationId}}/items",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "teacher",
+                "evaluations",
+                "{{evaluationId}}",
+                "items"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Evaluation Item",
+          "id": "41e340f9-ea56-4f3e-afaa-f40eb0eabf65",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Examen practico\",\n  \"maxScore\": 10\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/teacher/evaluations/{{evaluationId}}/items",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "teacher",
+                "evaluations",
+                "{{evaluationId}}",
+                "items"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Set Grade",
+          "id": "a4399bd0-b030-46b1-8828-d4b6bdeabd87",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"studentId\": \"\",\n  \"value\": 0\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/teacher/evaluations/items/{{itemId}}/grades",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "teacher",
+                "evaluations",
+                "items",
+                "{{itemId}}",
+                "grades"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Grades By Item",
+          "id": "a22d3bce-0c8e-4f4a-b89a-bfb7c263f2b8",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/teacher/evaluations/items/{{itemId}}/grades",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "teacher",
+                "evaluations",
+                "items",
+                "{{itemId}}",
+                "grades"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Grades Summary",
+          "id": "e6a0b54c-9949-4691-ab6b-d3b4ff22dddc",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/teacher/evaluations/{{evaluationId}}/grades/summary",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "teacher",
+                "evaluations",
+                "{{evaluationId}}",
+                "grades",
+                "summary"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Teacher Dashboard",
+          "id": "45396c98-daf1-4cbb-9fe9-a36a8fb37ca6",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/teacher/dashboard",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "teacher",
+                "dashboard"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "53f253ce-d35d-4f5c-9faf-125e3b2086a8"
+    },
+    {
+      "name": "Student",
+      "item": [
+        {
+          "name": "Get My Attendance",
+          "id": "59aea2a2-1518-4521-85fb-4c0d71357305",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/student/attendance",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "student",
+                "attendance"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get My Grades Summary",
+          "id": "d8b2451b-e29e-48fa-a70b-3241c02d317e",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/student/evaluations/{{evaluationId}}/grades/summary",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "student",
+                "evaluations",
+                "{{evaluationId}}",
+                "grades",
+                "summary"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get My Subjects",
+          "id": "c4ae38e7-9e0c-4f49-8fbc-d14d60313931",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/student/subjects",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "student",
+                "subjects"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get My Subject Detail",
+          "id": "669f678c-84ae-4c91-b218-02426895e54f",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/student/subjects/{{subjectId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "student",
+                "subjects",
+                "{{subjectId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Student Dashboard",
+          "id": "4b3e1063-25b8-4bbd-a503-49e0c102b6ae",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/student/dashboard",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "student",
+                "dashboard"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Student Dashboard Progress",
+          "id": "2a1224e2-a031-4863-9498-37a38cccabec",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/student/dashboard/progress",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "student",
+                "dashboard",
+                "progress"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get My Achievements",
+          "id": "a9ddb9b0-9b31-4f59-9fe4-86b1edb16466",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/student/achievements",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "student",
+                "achievements"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "0aa27f66-9477-44cb-b4a2-36fcae7297c8"
+    }
+  ],
+  "variable": [
+    {
+      "id": "933fcb93-3595-454b-b0d2-2ed8e92cbe64",
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "id": "e1c56dc4-1a28-4d41-af5c-dcfe4ff2ef9f",
+      "key": "token",
+      "value": ""
+    },
+    {
+      "id": "eccb8fde-4d3d-4c48-a883-4cca8a570f0b",
+      "key": "courseId",
+      "value": "<courseId>"
+    },
+    {
+      "id": "7a608b80-b53d-4beb-a1e8-833d3a72ed9b",
+      "key": "subjectId",
+      "value": "<subjectId>"
+    },
+    {
+      "id": "d8b6acd4-95fc-4757-a876-a08377333950",
+      "key": "evaluationId",
+      "value": "<evaluationId>"
+    },
+    {
+      "id": "2dd7bc4f-c8e8-4249-920b-c94e483b24e3",
+      "key": "itemId",
+      "value": "<itemId>"
+    }
+  ]
+}

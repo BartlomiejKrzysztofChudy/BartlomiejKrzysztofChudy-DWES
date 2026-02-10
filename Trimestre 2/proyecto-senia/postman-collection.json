@@ -1,0 +1,507 @@
+{
+  "info": {
+    "name": "Proyecto Senia API",
+    "_postman_id": "b2b1a7b0-3e8b-4c5a-9f6c-1a0c3b7a2a9e",
+    "description": "Coleccion generada desde las rutas de src/app.js",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000" },
+    { "key": "token", "value": "" },
+    { "key": "courseId", "value": "<courseId>" },
+    { "key": "subjectId", "value": "<subjectId>" },
+    { "key": "evaluationId", "value": "<evaluationId>" },
+    { "key": "itemId", "value": "<itemId>" }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"\",\n  \"password\": \"\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Admin Test",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/admin-test",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "admin-test"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "users"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"email\": \"\",\n  \"password\": \"\",\n  \"role\": \"ADMIN\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Users",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "users"]
+            }
+          }
+        },
+        {
+          "name": "Create Course",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/courses",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "courses"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Courses",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/courses",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "courses"]
+            }
+          }
+        },
+        {
+          "name": "Create Subject",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/subjects",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "subjects"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"course\": \"{{courseId}}\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Subjects By Course",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/subjects/course/{{courseId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "subjects", "course", "{{courseId}}"]
+            }
+          }
+        },
+        {
+          "name": "Enroll Student",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/enrollments",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "enrollments"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"studentId\": \"\",\n  \"subjectId\": \"{{subjectId}}\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Enrollments By Subject",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/enrollments/subject/{{subjectId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "enrollments", "subject", "{{subjectId}}"]
+            }
+          }
+        },
+        {
+          "name": "Upsert Schedule",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/subjects/{{subjectId}}/schedule",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "subjects", "{{subjectId}}", "schedule"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"days\": []\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Schedules By Subject",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/subjects/{{subjectId}}/schedule",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "subjects", "{{subjectId}}", "schedule"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Teacher",
+      "item": [
+        {
+          "name": "Get Attendance By Subject",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/teacher/subjects/{{subjectId}}/attendance",
+              "host": ["{{baseUrl}}"],
+              "path": ["teacher", "subjects", "{{subjectId}}", "attendance"]
+            }
+          }
+        },
+        {
+          "name": "Mark Attendance",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/teacher/subjects/{{subjectId}}/attendance",
+              "host": ["{{baseUrl}}"],
+              "path": ["teacher", "subjects", "{{subjectId}}", "attendance"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"2026-02-09\",\n  \"records\": []\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Attendance Summary",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/teacher/subjects/{{subjectId}}/attendance/summary",
+              "host": ["{{baseUrl}}"],
+              "path": ["teacher", "subjects", "{{subjectId}}", "attendance", "summary"]
+            }
+          }
+        },
+        {
+          "name": "Get Evaluations By Subject",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/teacher/subjects/{{subjectId}}/evaluations",
+              "host": ["{{baseUrl}}"],
+              "path": ["teacher", "subjects", "{{subjectId}}", "evaluations"]
+            }
+          }
+        },
+        {
+          "name": "Create Evaluation",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/teacher/subjects/{{subjectId}}/evaluations",
+              "host": ["{{baseUrl}}"],
+              "path": ["teacher", "subjects", "{{subjectId}}", "evaluations"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"weight\": 0\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Items By Evaluation",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/teacher/evaluations/{{evaluationId}}/items",
+              "host": ["{{baseUrl}}"],
+              "path": ["teacher", "evaluations", "{{evaluationId}}", "items"]
+            }
+          }
+        },
+        {
+          "name": "Create Evaluation Item",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/teacher/evaluations/{{evaluationId}}/items",
+              "host": ["{{baseUrl}}"],
+              "path": ["teacher", "evaluations", "{{evaluationId}}", "items"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"maxScore\": 10\n}"
+            }
+          }
+        },
+        {
+          "name": "Set Grade",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/teacher/evaluations/items/{{itemId}}/grades",
+              "host": ["{{baseUrl}}"],
+              "path": ["teacher", "evaluations", "items", "{{itemId}}", "grades"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"studentId\": \"\",\n  \"value\": 0\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Grades By Item",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/teacher/evaluations/items/{{itemId}}/grades",
+              "host": ["{{baseUrl}}"],
+              "path": ["teacher", "evaluations", "items", "{{itemId}}", "grades"]
+            }
+          }
+        },
+        {
+          "name": "Get Grades Summary",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/teacher/evaluations/{{evaluationId}}/grades/summary",
+              "host": ["{{baseUrl}}"],
+              "path": ["teacher", "evaluations", "{{evaluationId}}", "grades", "summary"]
+            }
+          }
+        },
+        {
+          "name": "Teacher Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/teacher/dashboard",
+              "host": ["{{baseUrl}}"],
+              "path": ["teacher", "dashboard"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Student",
+      "item": [
+        {
+          "name": "Get My Attendance",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/student/attendance",
+              "host": ["{{baseUrl}}"],
+              "path": ["student", "attendance"]
+            }
+          }
+        },
+        {
+          "name": "Get My Grades Summary",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/student/evaluations/{{evaluationId}}/grades/summary",
+              "host": ["{{baseUrl}}"],
+              "path": ["student", "evaluations", "{{evaluationId}}", "grades", "summary"]
+            }
+          }
+        },
+        {
+          "name": "Get My Subjects",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/student/subjects",
+              "host": ["{{baseUrl}}"],
+              "path": ["student", "subjects"]
+            }
+          }
+        },
+        {
+          "name": "Get My Subject Detail",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/student/subjects/{{subjectId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["student", "subjects", "{{subjectId}}"]
+            }
+          }
+        },
+        {
+          "name": "Student Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/student/dashboard",
+              "host": ["{{baseUrl}}"],
+              "path": ["student", "dashboard"]
+            }
+          }
+        },
+        {
+          "name": "Student Dashboard Progress",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/student/dashboard/progress",
+              "host": ["{{baseUrl}}"],
+              "path": ["student", "dashboard", "progress"]
+            }
+          }
+        },
+        {
+          "name": "Get My Achievements",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/student/achievements",
+              "host": ["{{baseUrl}}"],
+              "path": ["student", "achievements"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

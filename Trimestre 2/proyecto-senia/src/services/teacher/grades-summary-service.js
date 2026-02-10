@@ -3,9 +3,6 @@ import EvaluationItem from "../../models/evaluation-item-model.js";
 import Grade from "../../models/grade-model.js";
 import Subject from "../../models/subject-model.js";
 
-/**
- * PROFESOR – Resumen de notas de una evaluación
- */
 export const getEvaluationGradesSummary = async ({
   teacherId,
   evaluationId

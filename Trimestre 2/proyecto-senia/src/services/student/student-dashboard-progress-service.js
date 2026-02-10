@@ -20,11 +20,14 @@ export const getMyProgress = async (studentId) => {
     max: nextLevelMin
   };
 
-  const recentAchievements = userAchievements.slice(0, 2).map(ua => ({
-    name: ua.achievement.name,
-    description: ua.achievement.description,
-    achievedAt: ua.achievedAt
-  }));
+  const recentAchievements = userAchievements
+    .filter(ua => ua.achievement)
+    .slice(0, 2)
+    .map(ua => ({
+      name: ua.achievement.name,
+      description: ua.achievement.description,
+      achievedAt: ua.achievedAt
+    }));
 
   return {
     level: {

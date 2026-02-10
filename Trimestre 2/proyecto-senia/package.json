@@ -11,6 +11,9 @@
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
+    "sonar": "sonar-scanner",
+    "sonar:local": "powershell -ExecutionPolicy Bypass -File scripts/sonar-local.ps1",
+    "sonar:docker": "powershell -ExecutionPolicy Bypass -File scripts/sonar-docker.ps1",
     "send-email": "node scripts/send-email.js"
   },
   "dependencies": {

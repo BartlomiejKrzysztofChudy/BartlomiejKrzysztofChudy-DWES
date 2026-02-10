@@ -30,6 +30,44 @@ services:
       retries: 3
       start_period: 40s
 
+  sonarqube:
+    image: sonarqube:lts-community
+    container_name: proyecto-senia-sonarqube
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+    environment:
+      - SONAR_JDBC_URL=jdbc:postgresql://sonarqube-db:5432/sonarqube
+      - SONAR_JDBC_USERNAME=sonarqube
+      - SONAR_JDBC_PASSWORD=sonarqube
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_logs:/opt/sonarqube/logs
+    depends_on:
+      - sonarqube-db
+    networks:
+      - proyecto-senia-network
+
+  sonarqube-db:
+    image: postgres:15-alpine
+    container_name: proyecto-senia-sonarqube-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=sonarqube
+      - POSTGRES_PASSWORD=sonarqube
+      - POSTGRES_DB=sonarqube
+    volumes:
+      - sonarqube_db:/var/lib/postgresql/data
+    networks:
+      - proyecto-senia-network
+
+volumes:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_logs:
+  sonarqube_db:
+
 networks:
   proyecto-senia-network:
     driver: bridge
